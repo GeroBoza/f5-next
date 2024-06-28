@@ -1,6 +1,9 @@
 export type Score = {
+  id: number;
   score: number;
-  date: string;
+  user_voter_id: number;
+  user_voted_id: number;
+  skill_id: number;
 };
 
 export type User = {

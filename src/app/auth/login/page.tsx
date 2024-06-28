@@ -1,11 +1,15 @@
 "use client";
+
+import { useEffect, useLayoutEffect, useState } from "react";
+
 import Image from "next/image";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 import { UserIcon, PasswordIcon } from "@/lib/icons";
-import { useState } from "react";
-import { useAuth } from "@/hooks/user";
 
 export default function Login() {
-  const { login } = useAuth();
+  const router = useRouter();
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -13,14 +17,18 @@ export default function Login() {
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    try {
-      const res = await login({
-        username: userName,
-        password: password,
-      });
-    } catch (error) {
-      console.log(error);
+    const res = await signIn("credentials", {
+      username: userName,
+      password: password,
+      redirect: false,
+    });
+
+    if (res?.error) {
+      console.log("error");
+      return;
     }
+
+    router.push("/friends");
   };
 
   return (
@@ -78,7 +86,7 @@ export default function Login() {
               Sign In
             </button>
             <small className="text-center">
-              You don't have an account yet? <u>Register</u>
+              You don&apos;t have an account yet? <u>Register</u>
             </small>
           </div>
         </form>
