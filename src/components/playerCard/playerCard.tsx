@@ -1,10 +1,11 @@
 "use client";
-import { Recieved_score, Score, User } from "@/lib/definitions";
+import { Score, User } from "@/lib/definitions";
 import Image from "next/image";
 import RatingStars from "../ratingStars/ratingStars";
 import { useEffect, useState } from "react";
 import VotesModal from "../votesModal/votesModal";
 import { useSession } from "next-auth/react";
+import PlayerDataModal from "../playerDataModal/PlayerDataModal";
 
 export default function PlayerCard({ user }: { user: User }) {
   const calculateAverage = () => {
@@ -22,14 +23,17 @@ export default function PlayerCard({ user }: { user: User }) {
   const { data: session }: Record<string, any> = useSession();
 
   const [openModal, setOpenModal] = useState(false);
+  const [openPlayerDataModal, setOpenPlayerDataModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null) as any;
 
   useEffect(() => {
     // Función que se ejecutará cuando se presione una tecla
-    if (openModal === true) {
+    if (openModal === true || openPlayerDataModal === true) {
+      console.log("entro");
       const handleKeyDown = (event: KeyboardEvent) => {
         if (event.key === "Escape") {
           setOpenModal(false);
+          setOpenPlayerDataModal(false);
         }
       };
 
@@ -41,18 +45,26 @@ export default function PlayerCard({ user }: { user: User }) {
         window.removeEventListener("keydown", handleKeyDown);
       };
     }
-  }, [openModal]);
+  }, [openModal, openPlayerDataModal]);
 
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <figure>
-        <Image
-          src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${user.image_path}`}
-          alt={user.name}
-          width={390}
-          height={400}
-          style={{ height: "350px", objectFit: "cover" }}
-        />
+        <label
+          htmlFor="player-data-modal"
+          className="cursor-pointer rounded-lg"
+          onClick={() => {
+            setSelectedUser(user), setOpenPlayerDataModal(true);
+          }}
+        >
+          <Image
+            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${user.image_path}`}
+            alt={user.name}
+            width={390}
+            height={400}
+            style={{ height: "350px", objectFit: "cover" }}
+          />
+        </label>
       </figure>
       <div className="card-body">
         <h2 className="card-title">{user.name}</h2>
@@ -68,8 +80,8 @@ export default function PlayerCard({ user }: { user: User }) {
           </button>
         ) : (
           <label
-            htmlFor="my_modal_7"
-            className="btn bg-blue-900 text-white hover:bg-blue-950"
+            htmlFor="vote-modal"
+            className="btn btn-primary"
             onClick={() => {
               setSelectedUser(user), setOpenModal(true);
             }}
@@ -87,6 +99,13 @@ export default function PlayerCard({ user }: { user: User }) {
           user={selectedUser}
           setOpenModal={setOpenModal}
         ></VotesModal>
+      )}
+
+      {openPlayerDataModal && (
+        <PlayerDataModal
+          user={selectedUser}
+          setOpenPlayerDataModal={setOpenPlayerDataModal}
+        ></PlayerDataModal>
       )}
     </div>
   );

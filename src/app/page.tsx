@@ -1,9 +1,8 @@
 import Header from "../components/header/header";
-import Players from "./(root)/friends/page";
 
 export default function Home() {
   return (
-    <main data-theme="light" className="">
+    <main className="">
       <Header></Header>
     </main>
   );

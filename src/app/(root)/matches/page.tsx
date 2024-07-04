@@ -1,7 +1,7 @@
 import { PlayersTable } from "@/components/table/PlayersTable";
 
 const Matches = () => {
-  return <PlayersTable />;
+  return <div>Matches</div>;
 };
 
 export default Matches;

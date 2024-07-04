@@ -22,6 +22,21 @@ const Teams = () => {
     fetchPlayers();
   }, [status, session]);
 
+  const lessThanTen = (
+    <h1 className="text-3xl font-bold uppercase">You must select 10 players</h1>
+  );
+
+  const generateTeams = () => {
+    console.log("hi ling");
+  };
+  const tenPlayersSelected = (
+    <div>
+      <button className="btn btn-primary text-white" onClick={generateTeams}>
+        Generate teams
+      </button>
+    </div>
+  );
+
   return (
     <div className="grid grid-cols-2 gap-10">
       <div className="w-full rounded-lg border-2 border-gray-200">
@@ -31,10 +46,8 @@ const Teams = () => {
           setSelectedPlayers={setSelectedPlayers}
         ></PlayersTable>
       </div>
-      <div>
-        {selectedPlayers.length === 10
-          ? "MUESTRO PARA GENERAR TEAMS"
-          : "SELECCIONE 10 JUGADORES PA"}
+      <div className="flex h-full w-full justify-center">
+        {selectedPlayers.length === 10 ? tenPlayersSelected : lessThanTen}
       </div>
     </div>
   );

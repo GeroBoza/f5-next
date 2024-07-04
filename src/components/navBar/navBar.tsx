@@ -84,9 +84,9 @@ export default function NavBar() {
                   <span className="badge">New</span>
                 </a>
               </li>
-              <li>
-                <a>Settings</a>
-              </li>
+              {/* <li>
+                <a>Add friends</a>
+              </li> */}
               <li>
                 <a onClick={() => signOut()}>Logout</a>
               </li>

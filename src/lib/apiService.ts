@@ -58,6 +58,10 @@ export const ApiService = {
     const res = await axios.get(`${api}/users/me/${userId}`, headers);
     return res;
   },
+  findUser: async (name: string) => {
+    const res = await axios.post(`${api}/users/findUser`, { name: name });
+    return res.data;
+  },
   getUsersClient: async (token: string) => {
     const headers = await headersJsonAuthClient(token);
     const res = await axios.get(`${api}/users`, headers);
@@ -66,6 +70,14 @@ export const ApiService = {
   getUsersServer: async () => {
     const headers = await headersJsonAuthServer();
     const res = await axios.get(`${api}/users`, headers);
+    return res.data;
+  },
+  getUserSkillsAverage: async (userId: number, token: string) => {
+    const headers = await headersJsonAuthClient(token);
+    const res = await axios.get(
+      `${api}/users/getUserSkillsAverage/${userId}`,
+      headers,
+    );
     return res.data;
   },
   getSkills: async () => {

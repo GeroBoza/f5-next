@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const usePieChart = (title: string) => {
+export const usePieChart = (title?: string) => {
   const [options, setOptions] = useState({
     chart: {
       type: "pie",

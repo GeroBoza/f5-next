@@ -100,7 +100,7 @@ export default function VotesModal({ user, setOpenModal }: Props) {
   };
   return (
     <>
-      <input type="checkbox" id="my_modal_7" className="modal-toggle" />
+      <input type="checkbox" id="vote-modal" className="modal-toggle" />
       <div className="modal" role="dialog">
         <div className="modal-box">
           Votar al jugador: <strong>{user !== null ? user.name : ""}</strong>
@@ -139,7 +139,7 @@ export default function VotesModal({ user, setOpenModal }: Props) {
         </div>
         <label
           className="modal-backdrop"
-          htmlFor="my_modal_7"
+          htmlFor="vote-modal"
           onClick={() => setOpenModal(false)}
         >
           Close
