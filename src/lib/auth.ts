@@ -1,5 +1,5 @@
 // lib/auth.js
-export async function verifyAuth(token) {
+export async function verifyAuth(token: string) {
   // Implementa la lógica para verificar el token de autenticación
   // Esto podría ser una llamada a tu backend o verificación de un token JWT
   if (!token) return false;
