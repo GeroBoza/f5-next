@@ -97,7 +97,7 @@ export const PlayersTable = ({
   );
 
   return (
-    <div className="w-full overflow-x-auto">
+    <div className="w-full overflow-x-auto rounded-lg border-2 border-gray-200">
       <table className="table">
         {/* head */}
         <thead>

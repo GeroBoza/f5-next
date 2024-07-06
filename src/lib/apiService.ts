@@ -1,8 +1,9 @@
 import axios from "axios";
 import { cookies } from "next/headers";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 import { HeadersAdapter } from "next/dist/server/web/spec-extension/adapters/headers";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 
 const getSessionData = async () => {
   return await getServerSession(authOptions);

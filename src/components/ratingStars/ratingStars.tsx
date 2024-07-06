@@ -18,21 +18,21 @@ const RatingStars: React.FC<RatingStarsProps> = ({ average }) => {
   const emptyStars = 5 - fullStars - halfStars;
 
   return (
-    <div className="rating rating-md rating-half">
+    <div className="rating rating-half rating-md">
       {[...Array(fullStars)].map((_, index) => (
         <React.Fragment key={`full-${index}`}>
           <input
             type="radio"
             name="rating-10"
             disabled
-            className="mask mask-star-2 mask-half-1 bg-yellow-400"
+            className="mask mask-half-1 mask-star-2 bg-yellow-400"
             checked
           />
           <input
             type="radio"
             name="rating-10"
             disabled
-            className="mask mask-star-2 mask-half-2 bg-yellow-400"
+            className="mask mask-half-2 mask-star-2 bg-yellow-400"
             checked
           />
         </React.Fragment>
@@ -43,14 +43,14 @@ const RatingStars: React.FC<RatingStarsProps> = ({ average }) => {
             type="radio"
             name="rating-10"
             disabled
-            className="mask mask-star-2 mask-half-1 bg-yellow-400"
+            className="mask mask-half-1 mask-star-2 bg-yellow-400"
             checked
           />
           <input
             type="radio"
             name="rating-10"
             disabled
-            className="mask mask-star-2 mask-half-2 bg-gray-400"
+            className="mask mask-half-2 mask-star-2 bg-gray-400"
           />
         </React.Fragment>
       )}
@@ -60,13 +60,13 @@ const RatingStars: React.FC<RatingStarsProps> = ({ average }) => {
             type="radio"
             name="rating-10"
             disabled
-            className="mask mask-star-2 mask-half-1 bg-gray-400"
+            className="mask mask-half-1 mask-star-2 bg-gray-400"
           />
           <input
             type="radio"
             name="rating-10"
             disabled
-            className="mask mask-star-2 mask-half-2 bg-gray-400"
+            className="mask mask-half-2 mask-star-2 bg-gray-400"
           />
         </React.Fragment>
       ))}
