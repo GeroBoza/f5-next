@@ -7,27 +7,29 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import { UserIcon, PasswordIcon } from "@/lib/icons";
+import Backdrop from "@/components/backdrop/Backdrop";
 
 export default function Login() {
   const router = useRouter();
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [showBackdrop, setShowBackdrop] = useState(false);
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
+    setShowBackdrop(true);
     const res = await signIn("credentials", {
       username: userName,
       password: password,
       redirect: false,
     });
 
+    setShowBackdrop(false);
     if (res?.error) {
       console.log("error");
       return;
     }
-
     router.push("/friends");
   };
 
@@ -91,6 +93,7 @@ export default function Login() {
           </div>
         </form>
       </div>
+      {showBackdrop && <Backdrop></Backdrop>}
     </div>
   );
 }
