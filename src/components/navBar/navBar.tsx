@@ -34,7 +34,7 @@ export default function NavBar() {
             {FootBallIcon} F5
           </div>
         </a>
-        {session && (
+        {status === "authenticated" && (
           <>
             <button
               onClick={() => router.push("/friends")}
@@ -58,7 +58,7 @@ export default function NavBar() {
         )}
       </div>
       <div className="flex-none gap-2">
-        {session ? (
+        {status === "authenticated" ? (
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
