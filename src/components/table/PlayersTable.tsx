@@ -2,6 +2,7 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import Image from "next/image";
 import { Score, User } from "@/lib/definitions";
 import Pagination from "./Pagination";
+import Skeleton from "../skeleton/Skeleton";
 
 interface Props {
   players: User[];
@@ -96,6 +97,22 @@ export const PlayersTable = ({
     indexOfLastPlayer,
   );
 
+  const playerSkeletons = [...Array(10)].map((_, index) => (
+    <tr key={index}>
+      <th>
+        <label>
+          <input type="checkbox" className="checkbox" disabled />
+        </label>
+      </th>
+      <td>
+        <Skeleton></Skeleton>
+      </td>
+      <td>
+        <div className="skeleton h-4 w-10"></div>
+      </td>
+    </tr>
+  ));
+
   return (
     <div className="w-full overflow-x-auto rounded-lg border-2 border-gray-200">
       <table className="table">
@@ -115,6 +132,7 @@ export const PlayersTable = ({
           </tr>
         </thead>
         <tbody>
+          {players.length === 0 && playerSkeletons}
           {/* Filas de jugadores */}
           {currentPlayers.map((player) => (
             <tr key={player.id} className="cursor-pointer">
