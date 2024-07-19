@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import { PlayersTable } from "@/components/table/PlayersTable";
+import { PlayersTable } from "@/components/playersTable/PlayersTable";
 import { ApiService } from "@/lib/apiService";
 import { Score, User } from "@/lib/definitions";
 import { useSession } from "next-auth/react";

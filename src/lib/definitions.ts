@@ -15,3 +15,13 @@ export type User = {
   given_scores: Score[];
   recieved_scores: Score[];
 };
+
+export type Match = {
+  id: number;
+  date: string;
+  winner_team_goals: number;
+  loser_team_goals: number;
+  tie: boolean;
+  winner_team: string;
+  loser_team: string;
+};

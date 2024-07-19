@@ -4,14 +4,14 @@ interface Props {
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
   indexOfLastPlayer: number;
-  playersLength: number;
+  itemsLength: number;
 }
 
 const Pagination = ({
   currentPage,
   setCurrentPage,
   indexOfLastPlayer,
-  playersLength,
+  itemsLength,
 }: Props) => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   return (
@@ -26,7 +26,7 @@ const Pagination = ({
       <button
         className="btn btn-primary"
         onClick={() => paginate(currentPage + 1)}
-        disabled={indexOfLastPlayer >= playersLength}
+        disabled={indexOfLastPlayer >= itemsLength}
       >
         Next
       </button>

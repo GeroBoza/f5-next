@@ -1,7 +1,7 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import Image from "next/image";
 import { Score, User } from "@/lib/definitions";
-import Pagination from "./Pagination";
+import Pagination from "../tablePagination/Pagination";
 import Skeleton from "../skeleton/Skeleton";
 
 interface Props {
@@ -176,7 +176,7 @@ export const PlayersTable = ({
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         indexOfLastPlayer={indexOfLastPlayer}
-        playersLength={players.length}
+        itemsLength={players.length}
       ></Pagination>
     </div>
   );

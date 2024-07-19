@@ -1,21 +1,16 @@
 import axios from "axios";
-import { cookies } from "next/headers";
 import { getServerSession } from "next-auth";
-
-import { HeadersAdapter } from "next/dist/server/web/spec-extension/adapters/headers";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 
 const getSessionData = async () => {
   return await getServerSession(authOptions);
 };
 
-// import cookie from "cookie";
-
-const headersJson = {
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
+// const headersJson = {
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+// };
 
 const headersJsonAuthServer = async () => {
   const sessionData = await getSessionData();
@@ -27,6 +22,7 @@ const headersJsonAuthServer = async () => {
     },
   };
 };
+
 const headersJsonAuthClient = async (token: string) => {
   return {
     headers: {
@@ -36,16 +32,16 @@ const headersJsonAuthClient = async (token: string) => {
   };
 };
 
-const headersMultipart = async () => {
-  const sessionData = await getSessionData();
-  const token = sessionData.user.token;
-  return {
-    headers: {
-      "Content-Type": "multipart/form-data",
-      Authorization: token.value,
-    },
-  };
-};
+// const headersMultipart = async () => {
+//   const sessionData = await getSessionData();
+//   const token = sessionData.user.token;
+//   return {
+//     headers: {
+//       "Content-Type": "multipart/form-data",
+//       Authorization: token.value,
+//     },
+//   };
+// };
 
 const api = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -71,6 +67,11 @@ export const ApiService = {
   getUsersServer: async () => {
     const headers = await headersJsonAuthServer();
     const res = await axios.get(`${api}/users`, headers);
+    return res.data;
+  },
+  getMatches: async () => {
+    const headers = await headersJsonAuthServer();
+    const res = await axios.get(`${api}/match/getAll`, headers);
     return res.data;
   },
   getUserSkillsAverage: async (userId: number, token: string) => {
