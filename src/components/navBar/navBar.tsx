@@ -12,6 +12,8 @@ export default function NavBar() {
   const { data: session, status } = useSession();
 
   const [userImage, setUserImage] = useState(null);
+  console.log(session);
+  console.log(status);
 
   useEffect(() => {
     const getUserData = async () => {
